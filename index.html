@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamNova — Post-Quantum AI Infrastructure · Jerusalem</title>
+<meta name="description" content="DreamNova builds the kernel, compiler, and substrate primitives for the next generation of AI infrastructure. Jerusalem-based deep-tech.">
+<meta property="og:title" content="DreamNova — Post-Quantum AI Infrastructure">
+<meta property="og:description" content="A 23-patent foundational portfolio addressing the VRAM wall and the silicon-substrate ceiling. Jerusalem-based deep-tech.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00d4ff">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:#05080f; color:#e2e8f0; font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.6; min-height:100vh; overflow-x:hidden;
+  }
+
+  /* AMBIENT BACKGROUND */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 10%, rgba(0,212,255,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 80% 70%, rgba(124,58,237,0.06), transparent 60%);
+  }
+  main { position:relative; z-index:1; }
+
+  /* HEADER */
+  header {
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(5,8,15,0.7); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(148,163,184,0.08);
+  }
+  .nav {
+    max-width:1280px; margin:0 auto; padding:20px 40px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .brand { font-family:'JetBrains Mono', monospace; font-weight:700; letter-spacing:0.32em; font-size:15px; color:#00d4ff; }
+  .brand b { color:#7c3aed; }
+  .nav-links { display:flex; gap:36px; font-size:14px; font-family:'JetBrains Mono', monospace; letter-spacing:0.12em; text-transform:uppercase; }
+  .nav-links a { color:#94a3b8; text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:#00d4ff; }
+  @media (max-width:720px) { .nav-links { display:none; } }
+
+  /* SECTIONS */
+  section { padding:160px 40px 100px; max-width:1280px; margin:0 auto; }
+  section + section { padding-top:80px; }
+
+  /* HERO */
+  .hero { min-height:90vh; display:flex; flex-direction:column; justify-content:center; }
+  .eyebrow {
+    font-family:'JetBrains Mono', monospace; font-size:13px; color:#00d4ff;
+    letter-spacing:0.32em; text-transform:uppercase; margin-bottom:28px;
+  }
+  h1 {
+    font-size:clamp(56px, 9vw, 120px); line-height:0.95; font-weight:800;
+    letter-spacing:-0.04em; color:#f8fafc; margin-bottom:36px; max-width:1100px;
+  }
+  h1 .accent { color:#00d4ff; }
+  .hero-tagline {
+    font-size:clamp(20px, 2.4vw, 30px); line-height:1.4; color:#cbd5e1;
+    font-weight:300; max-width:900px; margin-bottom:48px;
+  }
+  .hero-tagline strong { color:#f8fafc; font-weight:600; }
+  .cta {
+    display:inline-flex; align-items:center; gap:16px;
+    padding:18px 32px; border-radius:8px;
+    background:linear-gradient(135deg, rgba(0,212,255,0.1), rgba(124,58,237,0.12));
+    border:1px solid rgba(0,212,255,0.4);
+    color:#f8fafc; text-decoration:none; font-weight:500;
+    font-family:'JetBrains Mono', monospace; font-size:14px;
+    letter-spacing:0.18em; text-transform:uppercase;
+    transition:all 0.25s;
+  }
+  .cta:hover {
+    border-color:#00d4ff;
+    box-shadow:0 0 30px rgba(0,212,255,0.25);
+    transform:translateY(-1px);
+  }
+  .cta::after { content:'→'; transition:transform 0.2s; }
+  .cta:hover::after { transform:translateX(4px); }
+
+  /* SECTION HEAD */
+  h2 {
+    font-size:clamp(40px, 5vw, 68px); font-weight:700; color:#f8fafc;
+    letter-spacing:-0.025em; line-height:1.05; margin-bottom:24px; max-width:900px;
+  }
+  h2 em { color:#00d4ff; font-style:normal; }
+  .lead {
+    font-size:clamp(17px, 1.6vw, 22px); color:#cbd5e1; max-width:820px;
+    line-height:1.55; margin-bottom:60px; font-weight:300;
+  }
+  .lead strong { color:#f8fafc; font-weight:600; }
+
+  /* CARDS */
+  .grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:28px;
+  }
+  .card {
+    background:linear-gradient(135deg, rgba(0,212,255,0.04), rgba(124,58,237,0.05));
+    border:1px solid rgba(148,163,184,0.12); border-radius:14px;
+    padding:36px 34px; transition:all 0.25s;
+  }
+  .card:hover { border-color:rgba(0,212,255,0.4); transform:translateY(-2px); }
+  .card .num {
+    font-family:'JetBrains Mono', monospace; font-size:12px;
+    color:#00d4ff; letter-spacing:0.32em; text-transform:uppercase; margin-bottom:18px;
+  }
+  .card.violet .num { color:#a78bfa; }
+  .card h3 {
+    font-size:26px; font-weight:700; color:#f8fafc; margin-bottom:14px;
+    letter-spacing:-0.015em; line-height:1.2;
+  }
+  .card p { font-size:16px; color:#cbd5e1; line-height:1.6; }
+
+  /* TEAM */
+  .team-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:32px; margin-top:40px;
+  }
+  .person {
+    background:linear-gradient(135deg, rgba(0,212,255,0.03), rgba(124,58,237,0.04));
+    border:1px solid rgba(148,163,184,0.1); border-radius:14px; padding:32px;
+  }
+  .person .avatar {
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg, #00d4ff, #7c3aed);
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; font-weight:700; color:#05080f; margin-bottom:20px;
+  }
+  .person h4 { font-size:22px; color:#f8fafc; font-weight:700; margin-bottom:6px; letter-spacing:-0.01em; }
+  .person .role {
+    font-family:'JetBrains Mono', monospace; font-size:12px;
+    color:#00d4ff; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:14px;
+  }
+  .person.violet .role { color:#a78bfa; }
+  .person p { font-size:15px; color:#94a3b8; line-height:1.55; }
+
+  /* TRACTION ROW */
+  .traction { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px; margin-top:24px; }
+  .stat-card { padding:32px 28px; background:rgba(0,212,255,0.04); border:1px solid rgba(0,212,255,0.18); border-radius:12px; text-align:center; }
+  .stat-card .stat { font-size:48px; font-weight:800; color:#00d4ff; letter-spacing:-0.03em; line-height:1; margin-bottom:10px; }
+  .stat-card .stat.violet { color:#a78bfa; }
+  .stat-card .label { font-size:14px; color:#94a3b8; line-height:1.4; }
+
+  /* CONTACT */
+  .contact-box {
+    margin-top:40px;
+    background:linear-gradient(135deg, rgba(0,212,255,0.06), rgba(124,58,237,0.08));
+    border:1px solid rgba(0,212,255,0.3); border-radius:14px; padding:48px 40px;
+  }
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:36px; }
+  .contact-grid .item .lbl {
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+    color:#64748b; letter-spacing:0.24em; text-transform:uppercase; margin-bottom:8px;
+  }
+  .contact-grid .item .val { font-size:17px; color:#f8fafc; font-weight:500; word-break:break-all; }
+  .contact-grid .item a { color:#00d4ff; text-decoration:none; }
+  .contact-grid .item a:hover { text-decoration:underline; }
+
+  /* IP NOTE */
+  .ip-note {
+    margin-top:48px; padding:28px 32px;
+    background:rgba(124,58,237,0.06); border:1px solid rgba(124,58,237,0.25);
+    border-radius:12px;
+  }
+  .ip-note .label {
+    font-family:'JetBrains Mono', monospace; font-size:12px;
+    color:#a78bfa; letter-spacing:0.24em; text-transform:uppercase; margin-bottom:12px;
+  }
+  .ip-note p { font-size:16px; color:#cbd5e1; line-height:1.55; }
+
+  /* FOOTER */
+  footer {
+    padding:60px 40px; max-width:1280px; margin:0 auto;
+    border-top:1px solid rgba(148,163,184,0.08);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono', monospace; font-size:13px; color:#475569;
+    letter-spacing:0.12em;
+  }
+  @media (max-width:720px) { footer { flex-direction:column; gap:18px; text-align:center; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="brand">DREAM<b>NOVA</b></div>
+    <div class="nav-links">
+      <a href="#what">What</a>
+      <a href="#focus">Focus</a>
+      <a href="#team">Team</a>
+      <a href="#traction">Traction</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="eyebrow">Jerusalem · Israel · 2026</div>
+  <h1>Post-quantum<br>AI <span class="accent">infrastructure.</span></h1>
+  <p class="hero-tagline">
+    DreamNova builds the kernel, compiler, and substrate primitives for the next generation of AI infrastructure
+    — addressing the <strong>VRAM wall</strong> and the <strong>silicon-substrate ceiling</strong> at the same time.
+  </p>
+  <a href="#contact" class="cta">Speak with the founder</a>
+</section>
+
+<!-- WHAT -->
+<section id="what">
+  <div class="eyebrow">What we build · 01</div>
+  <h2>Foundational <em>infrastructure IP.</em></h2>
+  <p class="lead">
+    A 23-patent foundational portfolio of methods, kernels, and fabrication protocols
+    aimed at the load-bearing layers of AI infrastructure. Pre-filing through USPTO Wave 1.
+    Patent-candidate detail is shared under NDA only.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="num">Layer 01</div>
+      <h3>Compute · sparse-tensor routing</h3>
+      <p>Memory-efficient inference primitives that target the VRAM wall as a structural problem,
+      not a benchmark trick. Compatible with current GPU and accelerator pipelines.</p>
+    </div>
+    <div class="card violet">
+      <div class="num">Layer 02</div>
+      <h3>Substrate · post-CMOS materials</h3>
+      <p>A reproducible fabrication protocol family for next-generation semiconductors,
+      bridging materials science and AI compute roadmaps.</p>
+    </div>
+    <div class="card">
+      <div class="num">Layer 03</div>
+      <h3>Trust · post-quantum primitives</h3>
+      <p>Zero-knowledge and constitutional-AI primitives designed for the post-quantum cryptography
+      transition mandated by NIST and the EU AI Act.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS -->
+<section id="focus">
+  <div class="eyebrow">Why now · 02</div>
+  <h2>Four forces, <em>one infrastructure.</em></h2>
+  <p class="lead">
+    Frontier model parameter counts double roughly every six months. Memory bandwidth and rack interconnect do not.
+    At the same time, post-quantum migration deadlines and the EU AI Act compliance window land on top of the same compute budget.
+    DreamNova is positioned at the intersection.
+  </p>
+
+  <div class="grid">
+    <div class="card"><div class="num">Force 01</div><h3>Compute crunch</h3><p>Memory and interconnect have become the binding constraint on inference cost and training scale.</p></div>
+    <div class="card violet"><div class="num">Force 02</div><h3>Post-quantum migration</h3><p>NIST PQC selection finalized; enterprises must rotate to lattice and ZKP primitives by 2030.</p></div>
+    <div class="card"><div class="num">Force 03</div><h3>Regulation · 2026</h3><p>EU AI Act high-risk obligations begin 02 August 2026 — verifiable controls become a requirement, not an option.</p></div>
+    <div class="card violet"><div class="num">Force 04</div><h3>Israel deep-tech wave</h3><p>NextSilicon, Hailo, Run:AI — Jerusalem and Tel Aviv are the most concentrated deep-tech corridor outside the US.</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="eyebrow">Founders · 03</div>
+  <h2>Founder + <em>co-inventor partner.</em></h2>
+  <p class="lead">
+    DreamNova is operated by a small, focused team in Jerusalem.
+    The patent canon was developed between 2024 and 2026.
+  </p>
+
+  <div class="team-grid">
+    <div class="person">
+      <div class="avatar">DA</div>
+      <h4>David Amor</h4>
+      <div class="role">Founder · Inventor of record</div>
+      <p>Lead inventor on the 23 patent-candidates in the canon. Operator of the Jerusalem deep-tech research stack.</p>
+    </div>
+    <div class="person violet">
+      <div class="avatar" style="background:linear-gradient(135deg,#7c3aed,#00d4ff);">AB</div>
+      <h4>Ariel Belhadj</h4>
+      <div class="role">Co-inventor · Partner</div>
+      <p>Co-inventor named on 22 of the 23 patent-candidates, including both anchor patents in the AI compute and substrate layers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section id="traction">
+  <div class="eyebrow">Validation · 04</div>
+  <h2>₪15M+ non-dilutive <em>in active pipeline.</em></h2>
+  <p class="lead">
+    Institutional technical validation through Israeli, US-IL, and EU programmes — proof that
+    deep-tech reviewers have already vetted the portfolio.
+  </p>
+
+  <div class="traction">
+    <div class="stat-card"><div class="stat">₪1.95M</div><div class="label">IIA Tnufa + Frontier Compute applications</div></div>
+    <div class="stat-card"><div class="stat violet">$1M</div><div class="label">BIRD Foundation US-IL track · filing window 14 May 2026</div></div>
+    <div class="stat-card"><div class="stat">€2.5M</div><div class="label">EIC Accelerator scoped · Q3 2026 filing</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow">Contact · 05</div>
+  <h2>Speak with the <em>founder.</em></h2>
+  <p class="lead">
+    For investors, strategic partners, and licensing conversations.
+    Confidential portfolio access is shared under NDA only — no patent-candidate detail is published before USPTO filing.
+  </p>
+
+  <div class="contact-box">
+    <div class="contact-grid">
+      <div class="item">
+        <div class="lbl">Founder</div>
+        <div class="val">David Amor</div>
+      </div>
+      <div class="item">
+        <div class="lbl">Email</div>
+        <div class="val"><a href="mailto:dreamnovaultimate@gmail.com">dreamnovaultimate@gmail.com</a></div>
+      </div>
+      <div class="item">
+        <div class="lbl">Phone</div>
+        <div class="val"><a href="tel:+972584921492">+972-58-492-1492</a></div>
+      </div>
+      <div class="item">
+        <div class="lbl">Location</div>
+        <div class="val">Jerusalem · Israel</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ip-note">
+    <div class="label">IP Notice</div>
+    <p>The DreamNova patent canon is composed of 23 patent-candidates pre-filing through USPTO Wave 1
+    (May 2026 onward). No claim language, fabrication parameters, or method-specific details are
+    published on this site. Detailed portfolio review is available to vetted investors and partners
+    under NDA.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div>© 2026 DreamNova · Jerusalem · Israel</div>
+  <div>Confidential portfolio · NDA-only · USPTO Wave 1 May 2026</div>
+</footer>
+
+</body>
+</html>
