@@ -284,8 +284,8 @@
       <a href="#what">Approach</a>
       <a href="#bench">Benchmarks</a>
       <a href="#team">Team</a>
-      <a href="#traction">Traction</a>
       <a href="/DreamNova_Technical_Brief_v1.pdf" target="_blank">Brief</a>
+      <a href="https://github.com/CodeNoLimits/dreamnova-bench" target="_blank">Code</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -304,6 +304,7 @@
   <div class="cta-row">
     <a href="#contact" class="cta">Speak with the founder</a>
     <a href="/DreamNova_Technical_Brief_v1.pdf" target="_blank" class="cta secondary">Read technical brief →</a>
+    <a href="https://github.com/CodeNoLimits/dreamnova-bench" target="_blank" class="cta secondary">Run the benchmark →</a>
   </div>
 </section>
 
@@ -414,6 +415,16 @@
 
     <div class="bench-source">
       <span>Baselines: vLLM (Kwon et al., 2023) · FlashAttention-2 (Dao, 2023) · Industry-standard inference benchmarks.</span>
+    </div>
+
+    <div class="bench-disclosure" style="margin-bottom:18px;">
+      <strong style="color:#0891b2;">Live · public reference implementation</strong>
+      &nbsp;—&nbsp; the measurement methodology used for these rows is shipped publicly today on
+      <a href="https://github.com/CodeNoLimits/dreamnova-bench" target="_blank" style="color:#00d4ff;">github.com/CodeNoLimits/dreamnova-bench</a>.
+      Reviewers can clone the repo, run <code style="font-family:'JetBrains Mono', monospace; background:rgba(0,212,255,0.08); padding:2px 6px; border-radius:3px; color:#0891b2;">python3 bench.py</code>
+      on their own machine and reproduce the dense baseline numbers in under five minutes.
+      The repository ships a Switch-style top-K activation reference baseline alongside — making the gap to the
+      DreamNova design target visible and quantifiable.
     </div>
 
     <div class="bench-disclosure">
